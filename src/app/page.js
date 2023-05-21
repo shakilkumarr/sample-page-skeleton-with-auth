@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import UserTable from './components/UserTable/UserTable';
 import { getUserList } from '@/api/userList';
 
-const Home = ({ user }) => {
+const Home = ({ user, router }) => {
   const [userList, setUserList] = useState([]);
   const [isError, setPageError] = useState(false);
 
@@ -14,6 +14,10 @@ const Home = ({ user }) => {
       .then(setUserList)
       .catch(() => setPageError(true))
   }, []);
+
+  const handleAddUser = () => {
+    router.push('/user/add');
+  }
 
   return (
     <div className="flex flex-col h-screen bg-white w-full">
@@ -37,7 +41,7 @@ const Home = ({ user }) => {
         <div className="flex-grow p-4">
           <div className="flex justify-between items-center mb-5">
             <h1 className="text-2xl font-bold">User Lists</h1>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+            <button onClick={handleAddUser} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
               Create New
             </button>
           </div>

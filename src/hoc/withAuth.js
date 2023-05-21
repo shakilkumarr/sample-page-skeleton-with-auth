@@ -13,7 +13,7 @@ const withAuth = (ComponentToRender, isLogin = false) => props => {
     if (!user) return router.push("/login");
   }, [user, loading, router]);
 
-  if (loading) return <div className="flex justify-center align-middle text-lg tracking-wider">LOADING...</div>;
+  if (loading) return <div className="flex w-full h-full justify-center items-center text-lg tracking-wider">LOADING...</div>;
   if (isLogin || !!user) return (
     <ComponentToRender {...props} user={user} router={router} signInloading={loading} signInError={error} />
   )
